@@ -32,8 +32,36 @@
 <script type="text/javascript" src="./jquery/jquery-1.11.2.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+    get_xiaoqu_list();
+
+    function get_xiaoqu_list(){
+        func="draw_pic.php?&get_xiaoqu=1"
+            //alert(func)
+            $.ajax({
+                url: func,
+                datatype: "json",
+                success: function(data) {
+                    var ret = eval( '(' + data + ')' )
+                        for(index in ret) {
+                            //alert(ret[index])
+                            var xiaoqu = ret[index]
+                            //createElement(xiaoqu)
+                            $("#load_picture").append("<input type='checkbox' value='"+xiaoqu+"' name='header'/>"+xiaoqu);
+                        }
+                },
+                cache: false
+            });
+    }
+    function createElement(xiaoqu){
+        parent = document.getElementById("load_picture");
+        var cdiv=document.createElement("div");
+        cdiv.id=xiaoqu;
+        //cdiv.innerHTML="create: "+cdiv.id;
+        parent.appendChild(cdiv);
+        return cdiv.id
+    }
    $("#issue").click(function(){
-       xiaoqu=$("#xiaoqu")[0].value
+       xiaoqu=get_xiaoqu_data()
        args = get_select_data()
        if(args!=""){
            url = "caller.php?args="+args;
@@ -44,6 +72,18 @@ $(document).ready(function(){
            alert("请选择需统计的选项");
        }
    });
+
+   function get_xiaoqu_data(){
+       var headers = "";
+       $('input[name="header"]:checked').each(function(i){
+           if(0==i){
+               headers = $(this).val();
+           }else{
+               headers += (","+$(this).val());
+           }
+       });
+       return headers;
+   }
 
    function get_select_data(){
        var mydata = new Array();
@@ -65,8 +105,12 @@ $(document).ready(function(){
    <form method="post" action=""> 
    <?php include_once("header.php")?>
 <div class="container">
+   <div class="check">
+      <div id="load_picture" class="span7 text-center">
+      <?php //echo $args ?>
+      </div>
+   </div>
   <div id='dateselect'>
-    小区：<input style="width: 150px;height:36px" ype="text" name="xiaoqu" id="xiaoqu" />
     <button type="button" name="issue" id="issue" class="btn btn-danger">提交</button>
   </div>
     <div class="page-header">

@@ -77,7 +77,8 @@ $(document).ready(function(){
             chart: {
                 renderTo: pid,
                 zoomType: 'xy',
-                type: "spline",
+                type: "line",
+                //type: "spline",
                 //inverted: true,
             },
             title: {
