@@ -16,7 +16,8 @@ lianjia_conf = {
         "pages":"//div[@class='page-box house-lst-page-box']",
         "url_prefix":"https://bj.lianjia.com/chengjiao/",
         "option":{
-            "default":"l2a3a2rs",#50-70平，70-90平，二居室
+            "default":"l2rs",#二居室,
+            "condition1":"l2a3a2rs",#50-70平，70-90平，二居室,
             },
         "sleep_time":60,
         # "xiaoqu_list_str":"紫金新干线 紫金新干线二期 名佳花园一区 名佳花园三区 名佳花园四区 望都新地 望都新地二期 望都家园 名流花园 西辛南区 义宾北区 仓上小区",
