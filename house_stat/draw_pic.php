@@ -16,7 +16,13 @@ date_default_timezone_set("PRC");
 
 $pid = isset($_GET['pid'])?$_GET['pid']:"";
 $xiaoqu = isset($_GET['xiaoqu'])?$_GET['xiaoqu']:"";
-if ($xiaoqu) {
+$get_xiaoqu = isset($_GET['get_xiaoqu'])?$_GET['get_xiaoqu']:"";
+if ($get_xiaoqu == "1") {
+    $xiaoqu_list = get_xiaoqu_list();
+    echo json_encode($xiaoqu_list);
+    return;
+}
+elseif ($xiaoqu) {
     $xiaoqu_dict = explode(",", $xiaoqu);
 }
 else {
@@ -79,6 +85,21 @@ function call_get_data($pid,$config){
         $ret=array('error'=>'-1002','err_msg'=>"config $pid: title number != type number");
     }
     return $ret;
+}
+
+function get_xiaoqu_list(){
+    $xiaoqu_list = array();
+    $house_file = fopen("house.data", "r");
+    while(!feof($house_file)) {
+        $line = trim(fgets($house_file));
+        $items = explode("\t", $line);
+        $xiaoqu_name = $items[0];
+        if ($xiaoqu_name) {
+            $xiaoqu_list[] = $xiaoqu_name;
+        }
+    }
+    fclose($house_file);
+    return $xiaoqu_list;
 }
 
 function get_line_data($pid,$config,$item){
