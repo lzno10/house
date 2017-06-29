@@ -241,7 +241,6 @@ conf = lianjia_conf
 if __name__ == "__main__":
     xiaoqu_list = conf.get("xiaoqu_list",[])
     condition = conf.get("condition", "default")
-    # xiaoqu_list = conf.get("xiaoqu_list_str","").split()
     #对配置文件中的每个小区进行抓取
     result_dict = {}
     for xiaoqu in xiaoqu_list:

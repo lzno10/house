@@ -45,8 +45,7 @@ $(document).ready(function(){
                         for(index in ret) {
                             //alert(ret[index])
                             var xiaoqu = ret[index]
-                            //createElement(xiaoqu)
-                            $("#load_picture").append("<input type='checkbox' value='"+xiaoqu+"' name='header'/>"+xiaoqu);
+                            $("#load_picture").append("<input type='checkbox' value='"+xiaoqu+"' name='xiaoqu'/>"+xiaoqu);
                         }
                 },
                 cache: false
@@ -60,6 +59,9 @@ $(document).ready(function(){
         parent.appendChild(cdiv);
         return cdiv.id
     }
+   $("#select_xiaoqu").click(function(){
+       $("[name = xiaoqu]:checkbox").attr("checked", true);
+   });
    $("#issue").click(function(){
        xiaoqu=get_xiaoqu_data()
        args = get_select_data()
@@ -75,7 +77,7 @@ $(document).ready(function(){
 
    function get_xiaoqu_data(){
        var headers = "";
-       $('input[name="header"]:checked').each(function(i){
+       $('input[name="xiaoqu"]:checked').each(function(i){
            if(0==i){
                headers = $(this).val();
            }else{
@@ -105,12 +107,10 @@ $(document).ready(function(){
    <form method="post" action=""> 
    <?php include_once("header.php")?>
 <div class="container">
-   <div class="check">
-      <div id="load_picture" class="span7 text-center">
-      <?php //echo $args ?>
-      </div>
-   </div>
+  <div id="load_picture" class="span7 text-left">
+  </div>
   <div id='dateselect'>
+    <button type="button" name="select_xiaoqu" id="select_xiaoqu" class="btn btn-danger">全选</button>
     <button type="button" name="issue" id="issue" class="btn btn-danger">提交</button>
   </div>
     <div class="page-header">
