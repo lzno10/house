@@ -38,6 +38,10 @@ def gen_url_list(xiaoqu, option="default", max_pages=10):
         xiaoqu_option = conf["option"][option]
         default_url = "%spg1%s%s" % (url_prefix, xiaoqu_option, urllib.quote(xiaoqu))
         max_pages = get_max_pages(default_url, max_pages)
+        if max_pages == 0:
+            xiaoqu_option = conf["option"]["default"]
+            default_url = "%spg1%s%s" % (url_prefix, xiaoqu_option, urllib.quote(xiaoqu))
+            max_pages = get_max_pages(default_url, max_pages)
         for page_num in range(max_pages):
             url_list.append("%spg%s%s%s" % (url_prefix, page_num+1, xiaoqu_option, urllib.quote(xiaoqu)))
         return url_list
@@ -184,8 +188,11 @@ def fmt_date(data):
 def get_lianjia_house_pages(pages):
     """获取lianjia页数字段
     """
-    pages = pages[0].attrib["page-data"]
-    pages = json.loads(pages)["totalPage"]
+    if pages:
+        pages = pages[0].attrib["page-data"]
+        pages = json.loads(pages)["totalPage"]
+    else:
+        pages = 0
     return pages
 
 def output_result(result_dict):
