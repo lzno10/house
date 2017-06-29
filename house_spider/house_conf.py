@@ -5,6 +5,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 lianjia_conf = {
+        #各种字段xpath配置
         "house_list":"/descendant::ul[@class='listContent']//li",
         "fields":"image_url title deal_date total_price unit_price deal_info",
         "image_url":"a",
@@ -15,12 +16,16 @@ lianjia_conf = {
         "deal_info":"div//div[@class='dealCycleeInfo']/span/span",
         "pages":"//div[@class='page-box house-lst-page-box']",
         "url_prefix":"https://bj.lianjia.com/chengjiao/",
+        #配置目前需要抓取的条件
         "condition":"condition1",
+        #各种条件的配置
         "option":{
             "default":"l2rs",#二居室,
             "condition1":"l2a3a2rs",#50-70平，70-90平，二居室,
             },
+        #每个url抓取的sleep时间
         "sleep_time":60,
+        #需要抓取的小区列表
         "xiaoqu_list":[
             "紫金新干线",
             "紫金新干线二期",
