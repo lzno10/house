@@ -36,13 +36,13 @@ def gen_url_list(xiaoqu, option="default", max_pages=10):
         url_list = []
         url_prefix = conf["url_prefix"]
         xiaoqu_option = conf["option"][option]
-        default_url = "%spg1%s%s" % (url_prefix, xiaoqu_option, urllib.quote(xiaoqu))
-        max_pages = get_max_pages(default_url, max_pages)
-        if max_pages == 0:
+        xiaoqu_url = "%spg1%s%s" % (url_prefix, xiaoqu_option, urllib.quote(xiaoqu))
+        max_pages_num = get_max_pages(xiaoqu_url, max_pages)
+        if max_pages_num == 0:
             xiaoqu_option = conf["option"]["default"]
             default_url = "%spg1%s%s" % (url_prefix, xiaoqu_option, urllib.quote(xiaoqu))
-            max_pages = get_max_pages(default_url, max_pages)
-        for page_num in range(max_pages):
+            max_pages_num = get_max_pages(default_url, max_pages)
+        for page_num in range(max_pages_num):
             url_list.append("%spg%s%s%s" % (url_prefix, page_num+1, xiaoqu_option, urllib.quote(xiaoqu)))
         return url_list
     except Exception,e:
@@ -239,12 +239,13 @@ def gen_field_list(data, field):
 conf = lianjia_conf
 if __name__ == "__main__":
     xiaoqu_list = conf.get("xiaoqu_list",[])
+    condition = conf.get("condition", "default")
     # xiaoqu_list = conf.get("xiaoqu_list_str","").split()
     #对配置文件中的每个小区进行抓取
     result_dict = {}
     for xiaoqu in xiaoqu_list:
         print >> sys.stderr, "processing --> %s" % xiaoqu
-        xiaoqu_url_list = gen_url_list(xiaoqu)
+        xiaoqu_url_list = gen_url_list(xiaoqu, condition)
         data_list = []
         for xiaoqu_url in xiaoqu_url_list:
             print >> sys.stderr, "get: %s" % xiaoqu_url
