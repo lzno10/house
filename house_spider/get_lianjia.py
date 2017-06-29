@@ -42,8 +42,9 @@ def gen_url_list(xiaoqu, option="default", max_pages=10):
             url_list.append("%spg%s%s%s" % (url_prefix, page_num+1, xiaoqu_option, urllib.quote(xiaoqu)))
         return url_list
     except Exception,e:
+        print >> sys.stderr, e
         print >> sys.stderr, "gen_url error"
-        sys.exit()
+        return []
 
 def get_max_pages(url, max_pages):
     """根据url获取小区成交页面总数
