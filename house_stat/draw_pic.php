@@ -4,6 +4,7 @@
  * Date: 2016-04-22 18:12
  * Author:felix-king
  * Filename:draw_pic.php
+ * http://lzno10.xicp.net/house_stat/draw_pic.php?pid=unit_price&xiaoqu=%E6%9C%9B%E9%83%BD%E6%96%B0%E5%9C%B0%E4%BA%8C%E6%9C%9F
  */
 
 error_reporting(E_ALL);
@@ -112,7 +113,6 @@ function get_line_data($pid,$config,$item){
         $line = trim(fgets($house_file));
         $items = explode("\t", $line);
         $xiaoqu_name = $items[0];
-        $info = $items[1];
         $info = json_decode($items[1], true);
         $info_item = $info[$pid];
         $output_flag = true;
