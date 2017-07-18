@@ -18,4 +18,4 @@ class RedisApi(object):
 
 if __name__ == "__main__":
     type_redis = RedisApi()
-    print type_redis.get("test")
+    print type_redis.get("stock_ret")
