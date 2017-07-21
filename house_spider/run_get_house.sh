@@ -12,4 +12,4 @@ echo `date`"finish get data"
 echo "cp data/house.data /usr/share/nginx/html/house_stat/"
 \cp data/house.data /usr/share/nginx/html/house_stat/
 \cp data/house.data data/house.data.`date +%Y%m%d`
-echo `date`" finish\n\n"
+echo -e `date`" finish\n\n"
