@@ -239,11 +239,10 @@ def gen_field_list(data, field):
 
 conf = lianjia_conf
 if __name__ == "__main__":
-    xiaoqu_list = conf.get("xiaoqu_list",[])
-    condition = conf.get("condition", "default")
+    xiaoqu_dict = conf.get("xiaoqu_dict",[])
     #对配置文件中的每个小区进行抓取
     result_dict = {}
-    for xiaoqu in xiaoqu_list:
+    for xiaoqu, condition in xiaoqu_dict.iteritems():
         print >> sys.stderr, "processing --> %s" % xiaoqu
         xiaoqu_url_list = gen_url_list(xiaoqu, condition)
         data_list = []
