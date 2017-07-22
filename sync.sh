@@ -5,12 +5,12 @@ CUR_DIR=`dirname "${CUR_DIR}"`
 cd ${CUR_DIR}
 export PATH=${HOME}/bin:/usr/local/bin:/home/s/bin:${CUR_DIR}/env/bin:${PATH}
 
-program="house_stat"
+program="house_stat/"
 exclude_list=".exclude.list"
 src_dir="/home/liuzhuo/project/house"
 dest_user=""
 dest_host=""
-dest_dir="/usr/share/nginx/html/"
+dest_dir="/usr/share/nginx/html/house"
 
 update_git() {
     msg="$1"
