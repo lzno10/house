@@ -19,7 +19,7 @@ export PATH=${HOME}/bin:/usr/local/bin:/home/s/bin:${CUR_DIR}/env/bin:${PATH}
 
 program="house_stat"
 exclude_list=".exclude.list"
-src_dir="/home/liuzhuo/project/house/"
+src_dir="/home/liuzhuo/project/house"
 dest_user="liuzhuo"
 dest_host="localhost"
 dest_dir="/usr/share/nginx/html/"
